@@ -1,0 +1,48 @@
+# Single source of truth for the lab catalogue.
+# Records are indexed by PROBLEM and DATE, not by technology group:
+# a reviewer reads "what problem, proved how, verify with which command".
+records:
+  - id: oom-evidence
+    date: 2026-11-06
+    problem: "An OOM happens every few months and nobody can prove what held the memory."
+    proved: "6 reproducible failure modes, 10 classification outcomes, 1 leak reproduced at 99.6% of heap in MAT"
+    verify: "cd ../oom-evidence-lab && make smoke"
+    tags: [observability, jvm, evidence]
+    status: flagship
+    repo: https://github.com/lasttoss/oom-evidence-lab
+
+  - id: legacy-revive
+    date: 2026-11-09
+    problem: "A legacy Spring service has no tests, no maps, and nobody knows what breaks when a file changes."
+    proved: "0 -> 20 golden tests, 89.2% line coverage with a ratchet gate, endpoint->table map, changed-file impact report"
+    verify: "cd ../legacy-revive-lab && make all"
+    tags: [legacy, testing, toolkit]
+    status: flagship
+    repo: https://github.com/lasttoss/legacy-revive-lab
+
+  - id: agent-harness
+    date: 2026-11-10
+    problem: "A team uses an AI agent it cannot inspect: no cost attribution, no budget, no proof a wrong answer is caught."
+    proved: "cache reuse 0 -> 13 tokens on repeat, prefix volatility detected on 6 patterns, budget stops with HTTP 429, cost per request logged"
+    verify: "cd ../agent-harness-lab && make smoke"
+    tags: [platform, ai-harness, cost]
+    status: flagship
+    repo: ""
+
+  - id: idempotent-economy
+    date: 2026-10-28
+    problem: "Retries duplicate side effects; nobody can say which operations are safe to repeat."
+    proved: "idempotency keys + outbox pattern, duplicate-suppression test"
+    verify: "see repo README"
+    tags: [backend, reliability]
+    status: practice
+    repo: https://github.com/lasttoss/idempotent-economy
+
+  - id: qa-kit
+    date: 2026-10-20
+    problem: "Test suites report numbers but block nothing."
+    proved: "coverage floor + ratchet, drift check on generated docs"
+    verify: "see repo README"
+    tags: [testing, ci]
+    status: practice
+    repo: https://github.com/lasttoss/qa-kit
