@@ -33,7 +33,7 @@ Four recurring problems. Each line is a claim; the entries under it are the evid
 
 **AI as infrastructure, not magic** · 5 — If a team runs an agent, the team must be able to attribute its cost, cap it, and prove when its answer is wrong.
 
-- `cost-per-successful-task` · 2026-11-11 · 13 evidence-in-prompt tasks, 117 runs, three repair policies: cheap-only 37/39 at $0.000197 per success, same-tier retry on an empty reply 39/39 at $0.000180, strong-tier escalation 39/39 and never fired; one cheap call $0.000171 vs one strong call $0.001613
+- `cost-per-successful-task` · 2026-11-11 · 156 runs over two experiments, three repair policies: on facts-in-prompt cheap-only 37/39 at $0.000197 per success; on file-reading tasks (prompt = real docs, 1294 tokens) 23/24 at $0.000348, and 24/24 at $0.000302 with a same-tier retry on an empty reply. Escalation fired 1 time in 156 runs and rescued 0 tasks, at 11.6x the price of a cheap call
 - `agent-harness` · 2026-11-10 · three layers runnable offline in one command each; 6 gate cases (4 must be rejected); budget stops with HTTP 429; cost logged per request; prefix guard flags 6 volatility patterns
 - `cache-cost-measured` · 2026-11-10 · measured on the live API: 3712 of 3734 tokens cached on a repeat, 93.4% cheaper per call on deepseek-v4.1-flash, 78.7% on glm-5.3, 75.8% on glm-5.3-flash; one timestamp at the head dropped cached tokens to 0 on all three
 - `hubgate` · 2026-10-15 · 3 gates in fixed order (approval -> skill policy -> tool grants), 7 test files, each gate answered by a different owner
@@ -41,7 +41,7 @@ Four recurring problems. Each line is a claim; the entries under it are the evid
 
 **Correctness that blocks, not reports** · 8 — A number in a report changes nothing. A number that fails the build changes behaviour.
 
-- `cost-per-successful-task` · 2026-11-11 · 13 evidence-in-prompt tasks, 117 runs, three repair policies: cheap-only 37/39 at $0.000197 per success, same-tier retry on an empty reply 39/39 at $0.000180, strong-tier escalation 39/39 and never fired; one cheap call $0.000171 vs one strong call $0.001613
+- `cost-per-successful-task` · 2026-11-11 · 156 runs over two experiments, three repair policies: on facts-in-prompt cheap-only 37/39 at $0.000197 per success; on file-reading tasks (prompt = real docs, 1294 tokens) 23/24 at $0.000348, and 24/24 at $0.000302 with a same-tier retry on an empty reply. Escalation fired 1 time in 156 runs and rescued 0 tasks, at 11.6x the price of a cheap call
 - `agent-harness` · 2026-11-10 · three layers runnable offline in one command each; 6 gate cases (4 must be rejected); budget stops with HTTP 429; cost logged per request; prefix guard flags 6 volatility patterns
 - `legacy-revive` · 2026-11-09 · 0 -> 20 golden tests, 89.2% line coverage with a ratchet gate, endpoint->table map, changed-file impact report
 - `cicd-ai-reference` · 2026-10-30 · small app kept deliberately boring; 3 CI workflows and 16 make targets make the pipeline executable end to end, incl. qa-report and rollback
@@ -56,7 +56,7 @@ Four recurring problems. Each line is a claim; the entries under it are the evid
 
 **Problem** — A model that is cheap per token can be expensive per task: wrong answers get retried, empty replies get paid for twice, and nobody prices the repair.
 
-**Proved** — 13 evidence-in-prompt tasks, 117 runs, three repair policies: cheap-only 37/39 at $0.000197 per success, same-tier retry on an empty reply 39/39 at $0.000180, strong-tier escalation 39/39 and never fired; one cheap call $0.000171 vs one strong call $0.001613
+**Proved** — 156 runs over two experiments, three repair policies: on facts-in-prompt cheap-only 37/39 at $0.000197 per success; on file-reading tasks (prompt = real docs, 1294 tokens) 23/24 at $0.000348, and 24/24 at $0.000302 with a same-tier retry on an empty reply. Escalation fired 1 time in 156 runs and rescued 0 tasks, at 11.6x the price of a cheap call
 
 **Verify** — `cd ../agent-harness-lab && cat docs/COST-PER-TASK.md`
 
