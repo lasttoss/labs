@@ -6,6 +6,14 @@ technology — it is that the problem was actually closed.
 
 18 entries · 4 flagship · 20 tags
 
+## The shape of it
+
+The figure answers one question: how a reader gets from nineteen repositories to one page.
+
+![catalog.yaml, a generator, the generated README, and a CI check that fails on drift](docs/figures/catalog-pipeline.png)
+
+**Figure 1.** One hand-edited file generates everything a reader sees, and the same generator runs in check mode in CI, so a stale index fails the build instead of quietly describing work that no longer exists. Source: [`docs/figures/catalog-pipeline.html`](docs/figures/catalog-pipeline.html).
+
 ## What I keep working on
 
 Four recurring problems. Each line is a claim; the entries under it are the evidence.

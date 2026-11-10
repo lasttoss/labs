@@ -38,6 +38,22 @@ def _neg_date(d: str) -> tuple:
     return tuple(-x for x in parts)
 
 
+def render_figure() -> list[str]:
+    """One figure, generated like everything else, so the README stays reproducible."""
+    return [
+        "## The shape of it",
+        "",
+        "The figure answers one question: how a reader gets from nineteen repositories to one page.",
+        "",
+        "![catalog.yaml, a generator, the generated README, and a CI check that fails on drift](docs/figures/catalog-pipeline.png)",
+        "",
+        "**Figure 1.** One hand-edited file generates everything a reader sees, and the same generator "
+        "runs in check mode in CI, so a stale index fails the build instead of quietly describing work "
+        "that no longer exists. Source: [`docs/figures/catalog-pipeline.html`](docs/figures/catalog-pipeline.html).",
+        "",
+    ]
+
+
 def render_themes(themes: list[dict], records: list[dict]) -> list[str]:
     out: list[str] = ["## What I keep working on", ""]
     out.append("Four recurring problems. Each line is a claim; the entries under it are the evidence.")
@@ -82,6 +98,7 @@ def render(records: list[dict]) -> str:
     out.append("")
     out.append(f"{len(records)} entries · {len(flagships)} flagship · {len(all_tags)} tags")
     out.append("")
+    out.extend(render_figure())
     out.extend(render_themes(load_data().get("themes") or [], records))
     out.append("## Flagship")
     out.append("")

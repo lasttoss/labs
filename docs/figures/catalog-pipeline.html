@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- diagram-meta {"sources":["catalog.yaml","gen_catalog.py","Makefile",".github/workflows/ci.yml","check_links.sh"]} -->
+<head>
+<meta charset="utf-8">
+<title>The lab catalogue pipeline</title>
+<style>
+  :root{
+    --paper:#f5f5f5; --paper-2:#ececec; --ink:#2d3142; --muted:#4f5d75; --soft:#7a8399;
+    --rule:rgba(45,49,66,0.12); --rule-solid:#bfc0c0; --accent:#eb6c36;
+    --accent-tint:rgba(235,108,54,0.08);
+  }
+  html,body{margin:0;background:var(--paper);}
+  body{padding:40px;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);}
+  figure{margin:0;max-width:1040px;}
+  figcaption{margin-top:18px;font-size:13px;line-height:1.55;color:var(--muted);max-width:84ch;}
+  .mono{font-family:ui-monospace,"SF Mono",Menlo,monospace;}
+</style>
+</head>
+<body>
+<figure>
+<svg id="catalog" viewBox="0 0 960 400" width="960" height="400" role="img" aria-labelledby="t d">
+  <title id="t">The lab catalogue: one YAML file generates the index, and CI fails when the index drifts</title>
+  <desc id="d">catalog.yaml holds records and themes. A generator turns it into README.md with a theme view, four flagship entries and a scannable table. The same generator runs in check mode on CI and fails the build when the committed README differs from what the source would produce.</desc>
+  <rect x="0" y="0" width="960" height="400" fill="var(--paper)"/>
+
+  <g>
+    <rect x="24" y="70" width="176" height="86" rx="3" fill="var(--paper-2)" stroke="var(--rule-solid)"/>
+    <text x="40" y="96" font-size="12.5" font-weight="600" class="mono">catalog.yaml</text>
+    <text x="40" y="116" font-size="11" fill="var(--muted)">19 records</text>
+    <text x="40" y="133" font-size="11" fill="var(--muted)">4 themes</text>
+  </g>
+  <text x="24" y="58" font-size="11" letter-spacing="0.08em" fill="var(--soft)" class="mono">THE ONLY HAND-EDITED FILE</text>
+
+  <line x1="208" y1="113" x2="248" y2="113" stroke="var(--muted)" stroke-width="1.4"/>
+  <polygon points="256,113 246,108 246,118" fill="var(--muted)"/>
+
+  <g>
+    <rect x="256" y="70" width="184" height="86" rx="3" fill="var(--paper-2)" stroke="var(--rule-solid)"/>
+    <text x="272" y="96" font-size="12.5" font-weight="600" class="mono">gen_catalog.py</text>
+    <text x="272" y="116" font-size="11" fill="var(--muted)">stable output,</text>
+    <text x="272" y="133" font-size="11" fill="var(--muted)">no timestamps</text>
+  </g>
+
+  <line x1="448" y1="113" x2="488" y2="113" stroke="var(--muted)" stroke-width="1.4"/>
+  <polygon points="496,113 486,108 486,118" fill="var(--muted)"/>
+
+  <g>
+    <rect x="496" y="56" width="216" height="114" rx="3" fill="var(--accent-tint)" stroke="var(--accent)" stroke-width="1.4"/>
+    <text x="512" y="80" font-size="12.5" font-weight="600" class="mono" fill="var(--accent)">README.md</text>
+    <text x="512" y="99" font-size="11" fill="var(--muted)">themes: claim + evidence</text>
+    <text x="512" y="116" font-size="11" fill="var(--muted)">4 flagship, each with a command</text>
+    <text x="512" y="133" font-size="11" fill="var(--muted)">table of all entries</text>
+    <text x="512" y="152" font-size="11" fill="var(--muted)">read in ten seconds</text>
+  </g>
+
+  <g>
+    <rect x="760" y="70" width="176" height="86" rx="3" fill="var(--paper-2)" stroke="var(--rule-solid)"/>
+    <text x="776" y="96" font-size="12.5" font-weight="600" class="mono">reader</text>
+    <text x="776" y="116" font-size="11" fill="var(--muted)">never opens</text>
+    <text x="776" y="133" font-size="11" fill="var(--muted)">19 repositories</text>
+  </g>
+  <line x1="716" y1="113" x2="754" y2="113" stroke="var(--muted)" stroke-width="1.4"/>
+  <polygon points="760,113 750,108 750,118" fill="var(--muted)"/>
+
+  <line x1="24" y1="228" x2="936" y2="228" stroke="var(--rule)" stroke-width="1"/>
+  <text x="24" y="250" font-size="11" letter-spacing="0.08em" fill="var(--soft)" class="mono">THE SAME GENERATOR, TWO MODES</text>
+
+  <g>
+    <rect x="24" y="266" width="292" height="72" rx="3" fill="var(--paper-2)" stroke="var(--rule-solid)"/>
+    <text x="40" y="290" font-size="12" font-weight="600" class="mono">make gen</text>
+    <text x="40" y="310" font-size="11" fill="var(--muted)">writes README.md</text>
+    <text x="40" y="327" font-size="11" fill="var(--muted)">local, before committing</text>
+  </g>
+  <g>
+    <rect x="336" y="266" width="292" height="72" rx="3" fill="var(--paper-2)" stroke="var(--rule-solid)"/>
+    <text x="352" y="290" font-size="12" font-weight="600" class="mono">make check</text>
+    <text x="352" y="310" font-size="11" fill="var(--muted)">regenerates in memory, compares</text>
+    <text x="352" y="327" font-size="11" fill="var(--muted)">exit 1 when the index is stale</text>
+  </g>
+  <line x1="320" y1="302" x2="330" y2="302" stroke="var(--muted)" stroke-width="1.2"/>
+  <line x1="632" y1="302" x2="676" y2="302" stroke="var(--muted)" stroke-width="1.4"/>
+  <polygon points="684,302 674,297 674,307" fill="var(--muted)"/>
+  <text x="692" y="298" font-size="11.5" fill="var(--muted)">CI job</text>
+  <text x="692" y="315" font-size="11.5" fill="var(--muted)">red on drift</text>
+</svg>
+<figcaption>The catalogue has exactly one hand-edited file. Everything a reader sees is generated from it, and a stale index fails CI instead of quietly describing work that no longer exists. Themes are claims, and each one is followed by the entries that prove it.</figcaption>
+</figure>
+</body>
+</html>
