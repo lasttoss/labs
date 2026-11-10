@@ -88,7 +88,7 @@ Four recurring problems. Each line is a claim; the entries under it are the evid
 
 **Verify** — `cd ../qa-kit && make qa-report`
 
-**Repo** — https://github.com/lasttoss/qa-kit
+**Repo** — _local, not published yet_
 
 ### hubgate  ·  2026-10-15
 
@@ -98,7 +98,7 @@ Four recurring problems. Each line is a claim; the entries under it are the evid
 
 **Verify** — `cd ../hubgate && make demo`
 
-**Repo** — https://github.com/lasttoss/hubgate
+**Repo** — _local, not published yet_
 
 ### job-search  ·  2026-10-10
 
@@ -108,7 +108,7 @@ Four recurring problems. Each line is a claim; the entries under it are the evid
 
 **Verify** — `cd ../job-search && make test`
 
-**Repo** — https://github.com/lasttoss/job-search
+**Repo** — _local, not published yet_
 
 ### voicekit  ·  2026-10-07
 
@@ -118,7 +118,7 @@ Four recurring problems. Each line is a claim; the entries under it are the evid
 
 **Verify** — `see repo docs/2026-10-07-asr-transcribe-cpp-parakeet-unified.md`
 
-**Repo** — https://github.com/lasttoss/voicekit
+**Repo** — _local, not published yet_
 
 ### tech-radar  ·  2026-09-28
 
@@ -138,7 +138,7 @@ Four recurring problems. Each line is a claim; the entries under it are the evid
 
 **Verify** — `cd ../idempotent-economy && make demo`
 
-**Repo** — https://github.com/lasttoss/idempotent-economy
+**Repo** — _local, not published yet_
 
 ### architecture-diagrams  ·  2026-09-15
 

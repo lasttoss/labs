@@ -73,7 +73,7 @@ records:
     themes: [correctness-that-blocks]
     tags: [testing, ci, toolkit]
     status: practice
-    repo: https://github.com/lasttoss/qa-kit
+    repo: ""
 
   - id: hubgate
     date: 2026-10-15
@@ -83,7 +83,7 @@ records:
     themes: [ai-as-infrastructure]
     tags: [platform, ai-harness, authorization]
     status: practice
-    repo: https://github.com/lasttoss/hubgate
+    repo: ""
 
   - id: job-search
     date: 2026-10-10
@@ -93,7 +93,7 @@ records:
     themes: [ai-as-infrastructure]
     tags: [tooling, cost, ai-harness]
     status: practice
-    repo: https://github.com/lasttoss/job-search
+    repo: ""
 
   - id: voicekit
     date: 2026-10-07
@@ -103,7 +103,7 @@ records:
     themes: [ai-as-infrastructure]
     tags: [local-ai, measurement, ai-harness]
     status: practice
-    repo: https://github.com/lasttoss/voicekit
+    repo: ""
 
   - id: tech-radar
     date: 2026-09-28
@@ -123,7 +123,7 @@ records:
     themes: [correctness-that-blocks]
     tags: [reliability, backend]
     status: practice
-    repo: https://github.com/lasttoss/idempotent-economy
+    repo: ""
 
   - id: architecture-diagrams
     date: 2026-09-15
