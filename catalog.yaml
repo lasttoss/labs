@@ -30,6 +30,7 @@ records:
     problem: "An OOM happens every few months and nobody can prove what held the memory."
     proved: "6 reproducible failure modes, 10 classification outcomes, 1 leak reproduced at 99.6% of heap in MAT"
     verify: "cd ../oom-evidence-lab && make smoke"
+    themes: [evidence-first]
     tags: [observability, jvm, evidence]
     status: flagship
     repo: https://github.com/lasttoss/oom-evidence-lab
@@ -39,6 +40,7 @@ records:
     problem: "A legacy Spring service has no tests, no maps, and nobody knows what breaks when a file changes."
     proved: "0 -> 20 golden tests, 89.2% line coverage with a ratchet gate, endpoint->table map, changed-file impact report"
     verify: "cd ../legacy-revive-lab && make all"
+    themes: [legacy-without-fear, correctness-that-blocks]
     tags: [legacy, testing, toolkit]
     status: flagship
     repo: https://github.com/lasttoss/legacy-revive-lab
@@ -48,24 +50,142 @@ records:
     problem: "A team uses an AI agent it cannot inspect: no cost attribution, no budget, no proof a wrong answer is caught."
     proved: "cache reuse 0 -> 13 tokens on repeat, prefix volatility detected on 6 patterns, budget stops with HTTP 429, cost per request logged"
     verify: "cd ../agent-harness-lab && make smoke"
+    themes: [ai-as-infrastructure, correctness-that-blocks]
     tags: [platform, ai-harness, cost]
     status: flagship
     repo: ""
 
+  - id: cicd-ai-reference
+    date: 2026-10-30
+    problem: "A pipeline is reviewed by reading YAML, so nobody can tell whether the workflow actually gates anything."
+    proved: "small app kept deliberately boring; 3 CI workflows and 16 make targets make the pipeline executable end to end, incl. qa-report and rollback"
+    verify: "cd ../cicd-ai-reference && make smoke"
+    themes: [correctness-that-blocks]
+    tags: [ci, toolkit, ai-harness]
+    status: practice
+    repo: https://github.com/lasttoss/cicd-ai-reference
+
+  - id: qa-kit
+    date: 2026-10-25
+    problem: "Testers get a URL and 'please test everything'; no one says what the machine already checked."
+    proved: "every release candidate emits reports/qa-<version>.md: what was verified, what could not be verified, where a human looks first"
+    verify: "cd ../qa-kit && make qa-report"
+    themes: [correctness-that-blocks]
+    tags: [testing, ci, toolkit]
+    status: practice
+    repo: https://github.com/lasttoss/qa-kit
+
+  - id: hubgate
+    date: 2026-10-15
+    problem: "An internal AI hub had no answer to: who may work, through which skill, with which tools."
+    proved: "3 gates in fixed order (approval -> skill policy -> tool grants), 7 test files, each gate answered by a different owner"
+    verify: "cd ../hubgate && make demo"
+    themes: [ai-as-infrastructure]
+    tags: [platform, ai-harness, authorization]
+    status: practice
+    repo: https://github.com/lasttoss/hubgate
+
+  - id: job-search
+    date: 2026-10-10
+    problem: "Job scanning burns model tokens on postings that are already dead, wrong city, or excluded by hard rules."
+    proved: "3 deterministic filter layers at zero cost before any LLM call, 40 test files, blacklist and stale-posting rules written down"
+    verify: "cd ../job-search && make test"
+    themes: [ai-as-infrastructure]
+    tags: [tooling, cost, ai-harness]
+    status: practice
+    repo: https://github.com/lasttoss/job-search
+
+  - id: voicekit
+    date: 2026-10-07
+    problem: "Meeting notes in English are useless to me if the transcript is wrong, and cloud ASR is not allowed."
+    proved: "WER on real meeting audio 5.08% (was 12.18%), fully local, no cloud, 248 test files, no cloud and no API key"
+    verify: "see repo docs/2026-10-07-asr-transcribe-cpp-parakeet-unified.md"
+    themes: [ai-as-infrastructure]
+    tags: [local-ai, measurement, ai-harness]
+    status: practice
+    repo: https://github.com/lasttoss/voicekit
+
+  - id: tech-radar
+    date: 2026-09-28
+    problem: "Tech news reading is unbounded; without a written rubric it produces noise, not decisions."
+    proved: "rubric written down and unit-tested, offline demo on recorded signals, 7 test files, Go standard library only"
+    verify: "cd ../tech-radar && make demo"
+    themes: [correctness-that-blocks]
+    tags: [tooling, ci, cost]
+    status: practice
+    repo: https://github.com/lasttoss/tech-radar
+
   - id: idempotent-economy
-    date: 2026-10-28
-    problem: "Retries duplicate side effects; nobody can say which operations are safe to repeat."
-    proved: "idempotency keys + outbox pattern, duplicate-suppression test"
-    verify: "see repo README"
-    tags: [backend, reliability]
+    date: 2026-09-20
+    problem: "Retries duplicate side effects, so nobody can say which economy operations are safe to repeat."
+    proved: "10,000 operations applied twice: the second pass writes nothing; race test with 200 deliveries of one operation"
+    verify: "cd ../idempotent-economy && make demo"
+    themes: [correctness-that-blocks]
+    tags: [reliability, backend]
     status: practice
     repo: https://github.com/lasttoss/idempotent-economy
 
-  - id: qa-kit
-    date: 2026-10-20
-    problem: "Test suites report numbers but block nothing."
-    proved: "coverage floor + ratchet, drift check on generated docs"
-    verify: "see repo README"
-    tags: [testing, ci]
+  - id: architecture-diagrams
+    date: 2026-09-15
+    problem: "Architecture lives in somebody's head and in a screenshot, so no pull request can review it."
+    proved: "4 mermaid sources with exported PNGs, reviewable as text in a diff"
+    verify: "open ../architecture-diagrams"
+    tags: [design, docs]
     status: practice
-    repo: https://github.com/lasttoss/qa-kit
+    repo: https://github.com/lasttoss/architecture-diagrams
+
+  - id: go-log-api
+    date: 2026-09-10
+    problem: "Game servers post event batches; bad events poison the rollup and nobody can say which batch caused it."
+    proved: "4-step smoke: health, batch accepted, bad event rejected with a reason, oversized batch refused with 413"
+    verify: "cd ../go-log-api && make up"
+    themes: [evidence-first]
+    tags: [backend, observability, game]
+    status: practice
+    repo: https://github.com/lasttoss/go-log-api
+
+  - id: zinx-server
+    date: 2026-09-05
+    problem: "Two devices can log into one account and both play, which breaks every server-side rule."
+    proved: "one live session per account enforced through Redis, 11 test files, one-command smoke over the TCP protocol"
+    verify: "cd ../zinx-server && make up"
+    themes: [correctness-that-blocks]
+    tags: [game, backend, reliability]
+    status: practice
+    repo: https://github.com/lasttoss/zinx-server
+
+  - id: ts-nakama-game-demo
+    date: 2026-08-30
+    problem: "A game backend plugin is usually demonstrated by 'it compiles', not by a player completing a match."
+    proved: "device login, server-authoritative match, storage-backed inventory/shop/energy, 4 RPCs, smoke from a clean clone"
+    verify: "cd ../ts-nakama-game-demo && make up"
+    tags: [game, backend]
+    status: practice
+    repo: https://github.com/lasttoss/ts-nakama-game-demo
+
+  - id: quarkus-game-api
+    date: 2026-08-20
+    problem: "Client-authoritative gameplay means the client decides the outcome; the server only stores it."
+    proved: "single gRPC sendData RPC (opcode + JSON), gameplay driven by server-side config, JWT interceptor on everything but handshake, 8 test files"
+    verify: "cd ../quarkus-game-api && make up"
+    tags: [backend, game]
+    status: practice
+    repo: https://github.com/lasttoss/quarkus-game-api
+
+  - id: quarkus-auth-api
+    date: 2026-08-15
+    problem: "Auth is copied between services, so a token rule changes in one place and breaks in another."
+    proved: "RSA-signed JWT with register/login/renew/logout, sessions in Redis, 4 test files"
+    verify: "cd ../quarkus-auth-api && make up"
+    tags: [backend, security, game]
+    status: practice
+    repo: https://github.com/lasttoss/quarkus-auth-api
+
+  - id: game-center-api
+    date: 2026-08-10
+    problem: "Every new mobile game re-implements the same device auth, save/load, leaderboard and catalogue."
+    proved: "one REST surface serving a portfolio: device auth with JWT, save/load, leaderboards, match records, OpenAPI, 6 test files"
+    verify: "cd ../game-center-api && make up"
+    tags: [backend, game]
+    status: practice
+    repo: https://github.com/lasttoss/game-center-api

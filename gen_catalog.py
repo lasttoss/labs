@@ -28,8 +28,14 @@ def load() -> list[dict]:
     records = data.get("records") or []
     return sorted(
         records,
-        key=lambda r: (STATUS_ORDER.get(r.get("status", "practice"), 9), str(r.get("date", "")), r.get("id", "")),
+        key=lambda r: (STATUS_ORDER.get(r.get("status", "practice"), 9), _neg_date(r.get("date", "")), r.get("id", "")),
     )
+
+
+def _neg_date(d: str) -> tuple:
+    # newest first inside a status group
+    parts = [int(x) for x in str(d).split("-") if x.isdigit()]
+    return tuple(-x for x in parts)
 
 
 def render_themes(themes: list[dict], records: list[dict]) -> list[str]:
@@ -37,9 +43,8 @@ def render_themes(themes: list[dict], records: list[dict]) -> list[str]:
     out.append("Four recurring problems. Each line is a claim; the entries under it are the evidence.")
     out.append("")
     for t in themes:
-        tags = set(t.get("tags") or [])
-        hits = [r for r in records if tags & set(r.get("tags") or [])]
-        out.append(f"**{t.get('title', t.get('id'))}** — {t.get('claim', '')}")
+        hits = [r for r in records if t.get("id") in (r.get("themes") or [])]
+        out.append(f"**{t.get('title', t.get('id'))}** · {len(hits)} — {t.get('claim', '')}")
         out.append("")
         for r in sorted(hits, key=lambda x: str(x.get("date", "")), reverse=True):
             out.append(f"- `{r['id']}` · {r.get('date', '')} · {r.get('proved', '')}")
