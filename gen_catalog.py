@@ -19,13 +19,48 @@ README = ROOT / "README.md"
 STATUS_ORDER = {"flagship": 0, "practice": 1}
 
 
+def load_data() -> dict:
+    return yaml.safe_load(CATALOG.read_text(encoding="utf-8")) or {}
+
+
 def load() -> list[dict]:
-    data = yaml.safe_load(CATALOG.read_text(encoding="utf-8")) or {}
+    data = load_data()
     records = data.get("records") or []
     return sorted(
         records,
         key=lambda r: (STATUS_ORDER.get(r.get("status", "practice"), 9), str(r.get("date", "")), r.get("id", "")),
     )
+
+
+def render_themes(themes: list[dict], records: list[dict]) -> list[str]:
+    out: list[str] = ["## What I keep working on", ""]
+    out.append("Four recurring problems. Each line is a claim; the entries under it are the evidence.")
+    out.append("")
+    for t in themes:
+        tags = set(t.get("tags") or [])
+        hits = [r for r in records if tags & set(r.get("tags") or [])]
+        out.append(f"**{t.get('title', t.get('id'))}** — {t.get('claim', '')}")
+        out.append("")
+        for r in sorted(hits, key=lambda x: str(x.get("date", "")), reverse=True):
+            out.append(f"- `{r['id']}` · {r.get('date', '')} · {r.get('proved', '')}")
+        if not hits:
+            out.append("- _no entry yet_")
+        out.append("")
+    return out
+
+
+def render_table(records: list[dict]) -> list[str]:
+    out: list[str] = ["## All entries", ""]
+    out.append("| id | date | problem | tags |")
+    out.append("|---|---|---|---|")
+    for r in sorted(records, key=lambda x: str(x.get("date", "")), reverse=True):
+        problem = str(r.get("problem", "")).replace("|", "/")
+        if len(problem) > 90:
+            problem = problem[:87] + "..."
+        tags = ", ".join(r.get("tags") or [])
+        out.append(f"| `{r['id']}` | {r.get('date', '')} | {problem} | {tags} |")
+    out.append("")
+    return out
 
 
 def render(records: list[dict]) -> str:
@@ -42,6 +77,7 @@ def render(records: list[dict]) -> str:
     out.append("")
     out.append(f"{len(records)} entries · {len(flagships)} flagship · {len(all_tags)} tags")
     out.append("")
+    out.extend(render_themes(load_data().get("themes") or [], records))
     out.append("## Flagship")
     out.append("")
     for r in flagships:
@@ -51,6 +87,7 @@ def render(records: list[dict]) -> str:
         out.append("")
         for r in practice:
             out.extend(render_record(r, link=True))
+    out.extend(render_table(records))
     out.append("## Tags")
     out.append("")
     for t in all_tags:

@@ -6,6 +6,29 @@ technology — it is that the problem was actually closed.
 
 5 entries · 3 flagship · 12 tags
 
+## What I keep working on
+
+Four recurring problems. Each line is a claim; the entries under it are the evidence.
+
+**Evidence-first debugging** — I do not accept 'it might be memory' as an answer. I reproduce the failure, capture the artifact, and classify it.
+
+- `oom-evidence` · 2026-11-06 · 6 reproducible failure modes, 10 classification outcomes, 1 leak reproduced at 99.6% of heap in MAT
+
+**Change a legacy system without breaking it** — Before changing code nobody understands, I record its behaviour, map what depends on what, and gate the merge on both.
+
+- `legacy-revive` · 2026-11-09 · 0 -> 20 golden tests, 89.2% line coverage with a ratchet gate, endpoint->table map, changed-file impact report
+- `qa-kit` · 2026-10-20 · coverage floor + ratchet, drift check on generated docs
+
+**AI as infrastructure, not magic** — If a team runs an agent, the team must be able to attribute its cost, cap it, and prove when its answer is wrong.
+
+- `agent-harness` · 2026-11-10 · cache reuse 0 -> 13 tokens on repeat, prefix volatility detected on 6 patterns, budget stops with HTTP 429, cost per request logged
+
+**Correctness that blocks, not reports** — A number in a report changes nothing. A number that fails the build changes behaviour.
+
+- `legacy-revive` · 2026-11-09 · 0 -> 20 golden tests, 89.2% line coverage with a ratchet gate, endpoint->table map, changed-file impact report
+- `idempotent-economy` · 2026-10-28 · idempotency keys + outbox pattern, duplicate-suppression test
+- `qa-kit` · 2026-10-20 · coverage floor + ratchet, drift check on generated docs
+
 ## Flagship
 
 ### oom-evidence  ·  2026-11-06
@@ -59,6 +82,16 @@ technology — it is that the problem was actually closed.
 **Verify** — `see repo README`
 
 **Repo** — https://github.com/lasttoss/idempotent-economy
+
+## All entries
+
+| id | date | problem | tags |
+|---|---|---|---|
+| `agent-harness` | 2026-11-10 | A team uses an AI agent it cannot inspect: no cost attribution, no budget, no proof a w... | platform, ai-harness, cost |
+| `legacy-revive` | 2026-11-09 | A legacy Spring service has no tests, no maps, and nobody knows what breaks when a file... | legacy, testing, toolkit |
+| `oom-evidence` | 2026-11-06 | An OOM happens every few months and nobody can prove what held the memory. | observability, jvm, evidence |
+| `idempotent-economy` | 2026-10-28 | Retries duplicate side effects; nobody can say which operations are safe to repeat. | backend, reliability |
+| `qa-kit` | 2026-10-20 | Test suites report numbers but block nothing. | testing, ci |
 
 ## Tags
 

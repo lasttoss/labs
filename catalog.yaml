@@ -1,6 +1,29 @@
 # Single source of truth for the lab catalogue.
 # Records are indexed by PROBLEM and DATE, not by technology group:
 # a reviewer reads "what problem, proved how, verify with which command".
+# Themes are CLAIMS, not folders: each one is a sentence the reader can judge,
+# backed by entries that prove it. One entry may serve several themes.
+themes:
+  - id: evidence-first
+    title: "Evidence-first debugging"
+    claim: "I do not accept 'it might be memory' as an answer. I reproduce the failure, capture the artifact, and classify it."
+    tags: [observability, jvm, evidence]
+
+  - id: legacy-without-fear
+    title: "Change a legacy system without breaking it"
+    claim: "Before changing code nobody understands, I record its behaviour, map what depends on what, and gate the merge on both."
+    tags: [legacy, testing, toolkit]
+
+  - id: ai-as-infrastructure
+    title: "AI as infrastructure, not magic"
+    claim: "If a team runs an agent, the team must be able to attribute its cost, cap it, and prove when its answer is wrong."
+    tags: [platform, ai-harness, cost]
+
+  - id: correctness-that-blocks
+    title: "Correctness that blocks, not reports"
+    claim: "A number in a report changes nothing. A number that fails the build changes behaviour."
+    tags: [ci, reliability, testing]
+
 records:
   - id: oom-evidence
     date: 2026-11-06
