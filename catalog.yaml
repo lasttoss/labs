@@ -34,6 +34,7 @@ records:
     tags: [observability, jvm, evidence]
     status: flagship
     repo: "https://github.com/lasttoss/oom-evidence-lab"
+    visibility: public
 
   - id: legacy-revive
     date: 2026-11-09
@@ -44,16 +45,18 @@ records:
     tags: [legacy, testing, toolkit]
     status: flagship
     repo: "https://github.com/lasttoss/legacy-revive-lab"
+    visibility: public
 
   - id: agent-harness
     date: 2026-11-10
     problem: "A team uses an AI agent it cannot inspect: no cost attribution, no budget, no proof a wrong answer is caught."
-    proved: "cache reuse 0 -> 13 tokens on repeat, prefix volatility detected on 6 patterns, budget stops with HTTP 429, cost per request logged"
+    proved: "three layers runnable offline in one command each; 6 gate cases (4 must be rejected); budget stops with HTTP 429; cost logged per request; prefix guard flags 6 volatility patterns"
     verify: "cd ../agent-harness-lab && make smoke"
     themes: [ai-as-infrastructure, correctness-that-blocks]
     tags: [platform, ai-harness, cost]
     status: flagship
     repo: "https://github.com/lasttoss/agent-harness-lab"
+    visibility: public
 
   - id: cicd-ai-reference
     date: 2026-10-30
@@ -64,6 +67,7 @@ records:
     tags: [ci, toolkit, ai-harness]
     status: practice
     repo: "https://github.com/lasttoss/cicd-ai-reference"
+    visibility: public
 
   - id: qa-kit
     date: 2026-10-25
@@ -74,6 +78,7 @@ records:
     tags: [testing, ci, toolkit]
     status: practice
     repo: ""
+    visibility: private
 
   - id: hubgate
     date: 2026-10-15
@@ -84,6 +89,7 @@ records:
     tags: [platform, ai-harness, authorization]
     status: practice
     repo: ""
+    visibility: private
 
   - id: job-search
     date: 2026-10-10
@@ -94,16 +100,18 @@ records:
     tags: [tooling, cost, ai-harness]
     status: practice
     repo: ""
+    visibility: private
 
   - id: voicekit
     date: 2026-10-07
     problem: "Meeting notes in English are useless to me if the transcript is wrong, and cloud ASR is not allowed."
-    proved: "WER on real meeting audio 5.08% (was 12.18%), fully local, 248 test files, no cloud and no API key"
+    proved: "pipeline runs offline on this machine: ASR, then a Vietnamese line under the English transcript, then suggestions when the other side asks a question; WER on real meeting audio 5.08% down from 12.18% after swapping the ASR engine"
     verify: "see repo docs/2026-10-07-asr-transcribe-cpp-parakeet-unified.md"
     themes: [ai-as-infrastructure]
     tags: [local-ai, measurement, ai-harness]
     status: practice
     repo: ""
+    visibility: private
 
   - id: tech-radar
     date: 2026-09-28
@@ -114,6 +122,7 @@ records:
     tags: [tooling, ci, cost]
     status: practice
     repo: "https://github.com/lasttoss/tech-radar"
+    visibility: public
 
   - id: idempotent-economy
     date: 2026-09-20
@@ -124,6 +133,7 @@ records:
     tags: [reliability, backend]
     status: practice
     repo: ""
+    visibility: private
 
   - id: architecture-diagrams
     date: 2026-09-15
@@ -133,6 +143,7 @@ records:
     tags: [design, docs]
     status: practice
     repo: "https://github.com/lasttoss/architecture-diagrams"
+    visibility: public
 
   - id: go-log-api
     date: 2026-09-10
@@ -143,6 +154,7 @@ records:
     tags: [backend, observability, game]
     status: practice
     repo: "https://github.com/lasttoss/go-log-api"
+    visibility: public
 
   - id: zinx-server
     date: 2026-09-05
@@ -153,6 +165,7 @@ records:
     tags: [game, backend, reliability]
     status: practice
     repo: "https://github.com/lasttoss/zinx-server"
+    visibility: public
 
   - id: ts-nakama-game-demo
     date: 2026-08-30
@@ -162,6 +175,7 @@ records:
     tags: [game, backend]
     status: practice
     repo: "https://github.com/lasttoss/ts-nakama-game-demo"
+    visibility: public
 
   - id: quarkus-game-api
     date: 2026-08-20
@@ -171,6 +185,7 @@ records:
     tags: [backend, game]
     status: practice
     repo: "https://github.com/lasttoss/quarkus-game-api"
+    visibility: public
 
   - id: quarkus-auth-api
     date: 2026-08-15
@@ -180,6 +195,7 @@ records:
     tags: [backend, security, game]
     status: practice
     repo: "https://github.com/lasttoss/quarkus-auth-api"
+    visibility: public
 
   - id: game-center-api
     date: 2026-08-10
@@ -189,6 +205,7 @@ records:
     tags: [backend, game]
     status: practice
     repo: "https://github.com/lasttoss/game-center-api"
+    visibility: public
 
   - id: cache-cost-measured
     date: 2026-11-10
@@ -199,3 +216,4 @@ records:
     themes: [ai-as-infrastructure, evidence-first]
     status: flagship
     repo: "https://github.com/lasttoss/agent-harness-lab"
+    visibility: public

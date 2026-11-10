@@ -96,6 +96,9 @@ def render(records: list[dict]) -> str:
     out.append("proves it. Entries are ordered by date, because the useful signal is not the")
     out.append("technology — it is that the problem was actually closed.")
     out.append("")
+    out.append("Entries marked **private** cannot be checked by a reader. They are listed as ongoing")
+    out.append("work, not as proof, and they carry no command that pretends otherwise.")
+    out.append("")
     out.append(f"{len(records)} entries · {len(flagships)} flagship · {len(all_tags)} tags")
     out.append("")
     out.extend(render_figure())
@@ -127,12 +130,19 @@ def render_record(r: dict, link: bool) -> list[str]:
     lines.append(f"**Proved** — {r.get('proved', '')}")
     lines.append("")
     verify = r.get("verify", "").strip()
-    if verify:
+    private = (r.get("visibility") or "").strip() == "private"
+    if verify and not private:
         lines.append(f"**Verify** — `{verify}`")
+        lines.append("")
+    elif private:
+        lines.append("**Verify** — _not runnable by a reader: the repository is private_")
         lines.append("")
     repo = (r.get("repo") or "").strip()
     if link:
-        lines.append(f"**Repo** — {repo if repo else '_local, not published yet_'}")
+        if repo:
+            lines.append(f"**Repo** — {repo}")
+        else:
+            lines.append("**Repo** — _private, not published: you cannot check this one, only ask me to walk through it_")
         lines.append("")
     return lines
 

@@ -4,6 +4,9 @@ Each entry is a problem I hit, the artifact that answers it, and the command tha
 proves it. Entries are ordered by date, because the useful signal is not the
 technology — it is that the problem was actually closed.
 
+Entries marked **private** cannot be checked by a reader. They are listed as ongoing
+work, not as proof, and they carry no command that pretends otherwise.
+
 18 entries · 4 flagship · 20 tags
 
 ## The shape of it
@@ -30,15 +33,15 @@ Four recurring problems. Each line is a claim; the entries under it are the evid
 
 **AI as infrastructure, not magic** · 5 — If a team runs an agent, the team must be able to attribute its cost, cap it, and prove when its answer is wrong.
 
-- `agent-harness` · 2026-11-10 · cache reuse 0 -> 13 tokens on repeat, prefix volatility detected on 6 patterns, budget stops with HTTP 429, cost per request logged
+- `agent-harness` · 2026-11-10 · three layers runnable offline in one command each; 6 gate cases (4 must be rejected); budget stops with HTTP 429; cost logged per request; prefix guard flags 6 volatility patterns
 - `cache-cost-measured` · 2026-11-10 · measured on the live API: 3712 of 3734 tokens cached on a repeat, 93.4% cheaper per call on deepseek-v4.1-flash, 78.7% on glm-5.3, 75.8% on glm-5.3-flash; one timestamp at the head dropped cached tokens to 0 on all three
 - `hubgate` · 2026-10-15 · 3 gates in fixed order (approval -> skill policy -> tool grants), 7 test files, each gate answered by a different owner
 - `job-search` · 2026-10-10 · 3 deterministic filter layers at zero cost before any LLM call, 40 test files, blacklist and stale-posting rules written down
-- `voicekit` · 2026-10-07 · WER on real meeting audio 5.08% (was 12.18%), fully local, 248 test files, no cloud and no API key
+- `voicekit` · 2026-10-07 · pipeline runs offline on this machine: ASR, then a Vietnamese line under the English transcript, then suggestions when the other side asks a question; WER on real meeting audio 5.08% down from 12.18% after swapping the ASR engine
 
 **Correctness that blocks, not reports** · 7 — A number in a report changes nothing. A number that fails the build changes behaviour.
 
-- `agent-harness` · 2026-11-10 · cache reuse 0 -> 13 tokens on repeat, prefix volatility detected on 6 patterns, budget stops with HTTP 429, cost per request logged
+- `agent-harness` · 2026-11-10 · three layers runnable offline in one command each; 6 gate cases (4 must be rejected); budget stops with HTTP 429; cost logged per request; prefix guard flags 6 volatility patterns
 - `legacy-revive` · 2026-11-09 · 0 -> 20 golden tests, 89.2% line coverage with a ratchet gate, endpoint->table map, changed-file impact report
 - `cicd-ai-reference` · 2026-10-30 · small app kept deliberately boring; 3 CI workflows and 16 make targets make the pipeline executable end to end, incl. qa-report and rollback
 - `qa-kit` · 2026-10-25 · every release candidate emits reports/qa-<version>.md: what was verified, what could not be verified, where a human looks first
@@ -52,7 +55,7 @@ Four recurring problems. Each line is a claim; the entries under it are the evid
 
 **Problem** — A team uses an AI agent it cannot inspect: no cost attribution, no budget, no proof a wrong answer is caught.
 
-**Proved** — cache reuse 0 -> 13 tokens on repeat, prefix volatility detected on 6 patterns, budget stops with HTTP 429, cost per request logged
+**Proved** — three layers runnable offline in one command each; 6 gate cases (4 must be rejected); budget stops with HTTP 429; cost logged per request; prefix guard flags 6 volatility patterns
 
 **Verify** — `cd ../agent-harness-lab && make smoke`
 
@@ -106,9 +109,9 @@ Four recurring problems. Each line is a claim; the entries under it are the evid
 
 **Proved** — every release candidate emits reports/qa-<version>.md: what was verified, what could not be verified, where a human looks first
 
-**Verify** — `cd ../qa-kit && make qa-report`
+**Verify** — _not runnable by a reader: the repository is private_
 
-**Repo** — _local, not published yet_
+**Repo** — _private, not published: you cannot check this one, only ask me to walk through it_
 
 ### hubgate  ·  2026-10-15
 
@@ -116,9 +119,9 @@ Four recurring problems. Each line is a claim; the entries under it are the evid
 
 **Proved** — 3 gates in fixed order (approval -> skill policy -> tool grants), 7 test files, each gate answered by a different owner
 
-**Verify** — `cd ../hubgate && make demo`
+**Verify** — _not runnable by a reader: the repository is private_
 
-**Repo** — _local, not published yet_
+**Repo** — _private, not published: you cannot check this one, only ask me to walk through it_
 
 ### job-search  ·  2026-10-10
 
@@ -126,19 +129,19 @@ Four recurring problems. Each line is a claim; the entries under it are the evid
 
 **Proved** — 3 deterministic filter layers at zero cost before any LLM call, 40 test files, blacklist and stale-posting rules written down
 
-**Verify** — `cd ../job-search && make test`
+**Verify** — _not runnable by a reader: the repository is private_
 
-**Repo** — _local, not published yet_
+**Repo** — _private, not published: you cannot check this one, only ask me to walk through it_
 
 ### voicekit  ·  2026-10-07
 
 **Problem** — Meeting notes in English are useless to me if the transcript is wrong, and cloud ASR is not allowed.
 
-**Proved** — WER on real meeting audio 5.08% (was 12.18%), fully local, 248 test files, no cloud and no API key
+**Proved** — pipeline runs offline on this machine: ASR, then a Vietnamese line under the English transcript, then suggestions when the other side asks a question; WER on real meeting audio 5.08% down from 12.18% after swapping the ASR engine
 
-**Verify** — `see repo docs/2026-10-07-asr-transcribe-cpp-parakeet-unified.md`
+**Verify** — _not runnable by a reader: the repository is private_
 
-**Repo** — _local, not published yet_
+**Repo** — _private, not published: you cannot check this one, only ask me to walk through it_
 
 ### tech-radar  ·  2026-09-28
 
@@ -156,9 +159,9 @@ Four recurring problems. Each line is a claim; the entries under it are the evid
 
 **Proved** — 10,000 operations applied twice: the second pass writes nothing; race test with 200 deliveries of one operation
 
-**Verify** — `cd ../idempotent-economy && make demo`
+**Verify** — _not runnable by a reader: the repository is private_
 
-**Repo** — _local, not published yet_
+**Repo** — _private, not published: you cannot check this one, only ask me to walk through it_
 
 ### architecture-diagrams  ·  2026-09-15
 
