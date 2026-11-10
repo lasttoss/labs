@@ -129,6 +129,10 @@ def render_record(r: dict, link: bool) -> list[str]:
     lines.append("")
     lines.append(f"**Proved** — {r.get('proved', '')}")
     lines.append("")
+    usage = (r.get("usage") or "").strip()
+    if usage:
+        lines.append(f"**Use** — {usage}")
+        lines.append("")
     verify = r.get("verify", "").strip()
     private = (r.get("visibility") or "").strip() == "private"
     if verify and not private:

@@ -107,9 +107,9 @@ records:
     problem: "Meeting notes in English are useless to me if the transcript is wrong, and cloud ASR is not allowed."
     proved: "pipeline runs offline on this machine: ASR, then a Vietnamese line under the English transcript, then suggestions when the other side asks a question; WER on real meeting audio 5.08% down from 12.18% after swapping the ASR engine"
     verify: "see repo docs/2026-10-07-asr-transcribe-cpp-parakeet-unified.md"
-    themes: [ai-as-infrastructure]
     tags: [local-ai, measurement, ai-harness]
     status: practice
+    usage: "not in use — built for English meetings I do not currently have"
     repo: ""
     visibility: private
 
