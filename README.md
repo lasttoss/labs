@@ -4,14 +4,15 @@ Each entry is a problem I hit, the artifact that answers it, and the command tha
 proves it. Entries are ordered by date, because the useful signal is not the
 technology — it is that the problem was actually closed.
 
-17 entries · 3 flagship · 20 tags
+18 entries · 4 flagship · 20 tags
 
 ## What I keep working on
 
 Four recurring problems. Each line is a claim; the entries under it are the evidence.
 
-**Evidence-first debugging** · 2 — I do not accept 'it might be memory' as an answer. I reproduce the failure, capture the artifact, and classify it.
+**Evidence-first debugging** · 3 — I do not accept 'it might be memory' as an answer. I reproduce the failure, capture the artifact, and classify it.
 
+- `cache-cost-measured` · 2026-11-10 · measured on the live API: 3712 of 3734 tokens cached on a repeat, 93.4% cheaper per call on deepseek-v4.1-flash, 78.7% on glm-5.3, 75.8% on glm-5.3-flash; one timestamp at the head dropped cached tokens to 0 on all three
 - `oom-evidence` · 2026-11-06 · 6 reproducible failure modes, 10 classification outcomes, 1 leak reproduced at 99.6% of heap in MAT
 - `go-log-api` · 2026-09-10 · 4-step smoke: health, batch accepted, bad event rejected with a reason, oversized batch refused with 413
 
@@ -19,9 +20,10 @@ Four recurring problems. Each line is a claim; the entries under it are the evid
 
 - `legacy-revive` · 2026-11-09 · 0 -> 20 golden tests, 89.2% line coverage with a ratchet gate, endpoint->table map, changed-file impact report
 
-**AI as infrastructure, not magic** · 4 — If a team runs an agent, the team must be able to attribute its cost, cap it, and prove when its answer is wrong.
+**AI as infrastructure, not magic** · 5 — If a team runs an agent, the team must be able to attribute its cost, cap it, and prove when its answer is wrong.
 
 - `agent-harness` · 2026-11-10 · cache reuse 0 -> 13 tokens on repeat, prefix volatility detected on 6 patterns, budget stops with HTTP 429, cost per request logged
+- `cache-cost-measured` · 2026-11-10 · measured on the live API: 3712 of 3734 tokens cached on a repeat, 93.4% cheaper per call on deepseek-v4.1-flash, 78.7% on glm-5.3, 75.8% on glm-5.3-flash; one timestamp at the head dropped cached tokens to 0 on all three
 - `hubgate` · 2026-10-15 · 3 gates in fixed order (approval -> skill policy -> tool grants), 7 test files, each gate answered by a different owner
 - `job-search` · 2026-10-10 · 3 deterministic filter layers at zero cost before any LLM call, 40 test files, blacklist and stale-posting rules written down
 - `voicekit` · 2026-10-07 · WER on real meeting audio 5.08% (was 12.18%), fully local, no cloud, 248 test files, no cloud and no API key
@@ -45,6 +47,16 @@ Four recurring problems. Each line is a claim; the entries under it are the evid
 **Proved** — cache reuse 0 -> 13 tokens on repeat, prefix volatility detected on 6 patterns, budget stops with HTTP 429, cost per request logged
 
 **Verify** — `cd ../agent-harness-lab && make smoke`
+
+**Repo** — https://github.com/lasttoss/agent-harness-lab
+
+### cache-cost-measured  ·  2026-11-10
+
+**Problem** — Teams assume prompt caching saves money, but nobody can say how much, on which model, or what breaks it.
+
+**Proved** — measured on the live API: 3712 of 3734 tokens cached on a repeat, 93.4% cheaper per call on deepseek-v4.1-flash, 78.7% on glm-5.3, 75.8% on glm-5.3-flash; one timestamp at the head dropped cached tokens to 0 on all three
+
+**Verify** — `cd ../agent-harness-lab && cat docs/COST-MEASURED.md`
 
 **Repo** — https://github.com/lasttoss/agent-harness-lab
 
@@ -215,6 +227,7 @@ Four recurring problems. Each line is a claim; the entries under it are the evid
 | id | date | problem | tags |
 |---|---|---|---|
 | `agent-harness` | 2026-11-10 | A team uses an AI agent it cannot inspect: no cost attribution, no budget, no proof a w... | platform, ai-harness, cost |
+| `cache-cost-measured` | 2026-11-10 | Teams assume prompt caching saves money, but nobody can say how much, on which model, o... | cost, ai-harness, measurement |
 | `legacy-revive` | 2026-11-09 | A legacy Spring service has no tests, no maps, and nobody knows what breaks when a file... | legacy, testing, toolkit |
 | `oom-evidence` | 2026-11-06 | An OOM happens every few months and nobody can prove what held the memory. | observability, jvm, evidence |
 | `cicd-ai-reference` | 2026-10-30 | A pipeline is reviewed by reading YAML, so nobody can tell whether the workflow actuall... | ci, toolkit, ai-harness |
@@ -234,11 +247,11 @@ Four recurring problems. Each line is a claim; the entries under it are the evid
 
 ## Tags
 
-- `ai-harness` — agent-harness, cicd-ai-reference, hubgate, job-search, voicekit
+- `ai-harness` — agent-harness, cache-cost-measured, cicd-ai-reference, hubgate, job-search, voicekit
 - `authorization` — hubgate
 - `backend` — idempotent-economy, go-log-api, zinx-server, ts-nakama-game-demo, quarkus-game-api, quarkus-auth-api, game-center-api
 - `ci` — cicd-ai-reference, qa-kit, tech-radar
-- `cost` — agent-harness, job-search, tech-radar
+- `cost` — agent-harness, cache-cost-measured, job-search, tech-radar
 - `design` — architecture-diagrams
 - `docs` — architecture-diagrams
 - `evidence` — oom-evidence
@@ -246,7 +259,7 @@ Four recurring problems. Each line is a claim; the entries under it are the evid
 - `jvm` — oom-evidence
 - `legacy` — legacy-revive
 - `local-ai` — voicekit
-- `measurement` — voicekit
+- `measurement` — cache-cost-measured, voicekit
 - `observability` — oom-evidence, go-log-api
 - `platform` — agent-harness, hubgate
 - `reliability` — idempotent-economy, zinx-server

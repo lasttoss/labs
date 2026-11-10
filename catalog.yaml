@@ -189,3 +189,13 @@ records:
     tags: [backend, game]
     status: practice
     repo: "https://github.com/lasttoss/game-center-api"
+
+  - id: cache-cost-measured
+    date: 2026-11-10
+    problem: "Teams assume prompt caching saves money, but nobody can say how much, on which model, or what breaks it."
+    proved: "measured on the live API: 3712 of 3734 tokens cached on a repeat, 93.4% cheaper per call on deepseek-v4.1-flash, 78.7% on glm-5.3, 75.8% on glm-5.3-flash; one timestamp at the head dropped cached tokens to 0 on all three"
+    verify: "cd ../agent-harness-lab && cat docs/COST-MEASURED.md"
+    tags: [cost, ai-harness, measurement]
+    themes: [ai-as-infrastructure, evidence-first]
+    status: flagship
+    repo: "https://github.com/lasttoss/agent-harness-lab"
