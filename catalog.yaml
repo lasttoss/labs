@@ -33,7 +33,7 @@ records:
     themes: [evidence-first]
     tags: [observability, jvm, evidence]
     status: flagship
-    repo: https://github.com/lasttoss/oom-evidence-lab
+    repo: "https://github.com/lasttoss/oom-evidence-lab"
 
   - id: legacy-revive
     date: 2026-11-09
@@ -43,7 +43,7 @@ records:
     themes: [legacy-without-fear, correctness-that-blocks]
     tags: [legacy, testing, toolkit]
     status: flagship
-    repo: https://github.com/lasttoss/legacy-revive-lab
+    repo: "https://github.com/lasttoss/legacy-revive-lab"
 
   - id: agent-harness
     date: 2026-11-10
@@ -53,7 +53,7 @@ records:
     themes: [ai-as-infrastructure, correctness-that-blocks]
     tags: [platform, ai-harness, cost]
     status: flagship
-    repo: ""
+    repo: "https://github.com/lasttoss/agent-harness-lab"
 
   - id: cicd-ai-reference
     date: 2026-10-30
@@ -63,7 +63,7 @@ records:
     themes: [correctness-that-blocks]
     tags: [ci, toolkit, ai-harness]
     status: practice
-    repo: https://github.com/lasttoss/cicd-ai-reference
+    repo: "https://github.com/lasttoss/cicd-ai-reference"
 
   - id: qa-kit
     date: 2026-10-25
@@ -113,7 +113,7 @@ records:
     themes: [correctness-that-blocks]
     tags: [tooling, ci, cost]
     status: practice
-    repo: https://github.com/lasttoss/tech-radar
+    repo: "https://github.com/lasttoss/tech-radar"
 
   - id: idempotent-economy
     date: 2026-09-20
@@ -132,7 +132,7 @@ records:
     verify: "open ../architecture-diagrams"
     tags: [design, docs]
     status: practice
-    repo: https://github.com/lasttoss/architecture-diagrams
+    repo: "https://github.com/lasttoss/architecture-diagrams"
 
   - id: go-log-api
     date: 2026-09-10
@@ -142,7 +142,7 @@ records:
     themes: [evidence-first]
     tags: [backend, observability, game]
     status: practice
-    repo: https://github.com/lasttoss/go-log-api
+    repo: "https://github.com/lasttoss/go-log-api"
 
   - id: zinx-server
     date: 2026-09-05
@@ -152,7 +152,7 @@ records:
     themes: [correctness-that-blocks]
     tags: [game, backend, reliability]
     status: practice
-    repo: https://github.com/lasttoss/zinx-server
+    repo: "https://github.com/lasttoss/zinx-server"
 
   - id: ts-nakama-game-demo
     date: 2026-08-30
@@ -161,7 +161,7 @@ records:
     verify: "cd ../ts-nakama-game-demo && make up"
     tags: [game, backend]
     status: practice
-    repo: https://github.com/lasttoss/ts-nakama-game-demo
+    repo: "https://github.com/lasttoss/ts-nakama-game-demo"
 
   - id: quarkus-game-api
     date: 2026-08-20
@@ -170,7 +170,7 @@ records:
     verify: "cd ../quarkus-game-api && make up"
     tags: [backend, game]
     status: practice
-    repo: https://github.com/lasttoss/quarkus-game-api
+    repo: "https://github.com/lasttoss/quarkus-game-api"
 
   - id: quarkus-auth-api
     date: 2026-08-15
@@ -179,7 +179,7 @@ records:
     verify: "cd ../quarkus-auth-api && make up"
     tags: [backend, security, game]
     status: practice
-    repo: https://github.com/lasttoss/quarkus-auth-api
+    repo: "https://github.com/lasttoss/quarkus-auth-api"
 
   - id: game-center-api
     date: 2026-08-10
@@ -188,4 +188,4 @@ records:
     verify: "cd ../game-center-api && make up"
     tags: [backend, game]
     status: practice
-    repo: https://github.com/lasttoss/game-center-api
+    repo: "https://github.com/lasttoss/game-center-api"

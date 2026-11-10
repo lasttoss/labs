@@ -46,7 +46,7 @@ Four recurring problems. Each line is a claim; the entries under it are the evid
 
 **Verify** — `cd ../agent-harness-lab && make smoke`
 
-**Repo** — _local, not published yet_
+**Repo** — https://github.com/lasttoss/agent-harness-lab
 
 ### legacy-revive  ·  2026-11-09
 
