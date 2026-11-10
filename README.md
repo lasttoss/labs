@@ -26,7 +26,7 @@ Four recurring problems. Each line is a claim; the entries under it are the evid
 - `cache-cost-measured` · 2026-11-10 · measured on the live API: 3712 of 3734 tokens cached on a repeat, 93.4% cheaper per call on deepseek-v4.1-flash, 78.7% on glm-5.3, 75.8% on glm-5.3-flash; one timestamp at the head dropped cached tokens to 0 on all three
 - `hubgate` · 2026-10-15 · 3 gates in fixed order (approval -> skill policy -> tool grants), 7 test files, each gate answered by a different owner
 - `job-search` · 2026-10-10 · 3 deterministic filter layers at zero cost before any LLM call, 40 test files, blacklist and stale-posting rules written down
-- `voicekit` · 2026-10-07 · WER on real meeting audio 5.08% (was 12.18%), fully local, no cloud, 248 test files, no cloud and no API key
+- `voicekit` · 2026-10-07 · WER on real meeting audio 5.08% (was 12.18%), fully local, 248 test files, no cloud and no API key
 
 **Correctness that blocks, not reports** · 7 — A number in a report changes nothing. A number that fails the build changes behaviour.
 
@@ -126,7 +126,7 @@ Four recurring problems. Each line is a claim; the entries under it are the evid
 
 **Problem** — Meeting notes in English are useless to me if the transcript is wrong, and cloud ASR is not allowed.
 
-**Proved** — WER on real meeting audio 5.08% (was 12.18%), fully local, no cloud, 248 test files, no cloud and no API key
+**Proved** — WER on real meeting audio 5.08% (was 12.18%), fully local, 248 test files, no cloud and no API key
 
 **Verify** — `see repo docs/2026-10-07-asr-transcribe-cpp-parakeet-unified.md`
 
