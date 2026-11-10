@@ -7,7 +7,7 @@ technology — it is that the problem was actually closed.
 Entries marked **private** cannot be checked by a reader. They are listed as ongoing
 work, not as proof, and they carry no command that pretends otherwise.
 
-18 entries · 4 flagship · 20 tags
+19 entries · 5 flagship · 21 tags
 
 ## The shape of it
 
@@ -31,15 +31,17 @@ Four recurring problems. Each line is a claim; the entries under it are the evid
 
 - `legacy-revive` · 2026-11-09 · 0 -> 20 golden tests, 89.2% line coverage with a ratchet gate, endpoint->table map, changed-file impact report
 
-**AI as infrastructure, not magic** · 4 — If a team runs an agent, the team must be able to attribute its cost, cap it, and prove when its answer is wrong.
+**AI as infrastructure, not magic** · 5 — If a team runs an agent, the team must be able to attribute its cost, cap it, and prove when its answer is wrong.
 
+- `cost-per-successful-task` · 2026-11-11 · 13 evidence-in-prompt tasks, 117 runs, three repair policies: cheap-only 37/39 at $0.000197 per success, same-tier retry on an empty reply 39/39 at $0.000180, strong-tier escalation 39/39 and never fired; one cheap call $0.000171 vs one strong call $0.001613
 - `agent-harness` · 2026-11-10 · three layers runnable offline in one command each; 6 gate cases (4 must be rejected); budget stops with HTTP 429; cost logged per request; prefix guard flags 6 volatility patterns
 - `cache-cost-measured` · 2026-11-10 · measured on the live API: 3712 of 3734 tokens cached on a repeat, 93.4% cheaper per call on deepseek-v4.1-flash, 78.7% on glm-5.3, 75.8% on glm-5.3-flash; one timestamp at the head dropped cached tokens to 0 on all three
 - `hubgate` · 2026-10-15 · 3 gates in fixed order (approval -> skill policy -> tool grants), 7 test files, each gate answered by a different owner
 - `job-search` · 2026-10-10 · 3 deterministic filter layers at zero cost before any LLM call, 40 test files, blacklist and stale-posting rules written down
 
-**Correctness that blocks, not reports** · 7 — A number in a report changes nothing. A number that fails the build changes behaviour.
+**Correctness that blocks, not reports** · 8 — A number in a report changes nothing. A number that fails the build changes behaviour.
 
+- `cost-per-successful-task` · 2026-11-11 · 13 evidence-in-prompt tasks, 117 runs, three repair policies: cheap-only 37/39 at $0.000197 per success, same-tier retry on an empty reply 39/39 at $0.000180, strong-tier escalation 39/39 and never fired; one cheap call $0.000171 vs one strong call $0.001613
 - `agent-harness` · 2026-11-10 · three layers runnable offline in one command each; 6 gate cases (4 must be rejected); budget stops with HTTP 429; cost logged per request; prefix guard flags 6 volatility patterns
 - `legacy-revive` · 2026-11-09 · 0 -> 20 golden tests, 89.2% line coverage with a ratchet gate, endpoint->table map, changed-file impact report
 - `cicd-ai-reference` · 2026-10-30 · small app kept deliberately boring; 3 CI workflows and 16 make targets make the pipeline executable end to end, incl. qa-report and rollback
@@ -49,6 +51,16 @@ Four recurring problems. Each line is a claim; the entries under it are the evid
 - `zinx-server` · 2026-09-05 · one live session per account enforced through Redis, 11 test files, one-command smoke over the TCP protocol
 
 ## Flagship
+
+### cost-per-successful-task  ·  2026-11-11
+
+**Problem** — A model that is cheap per token can be expensive per task: wrong answers get retried, empty replies get paid for twice, and nobody prices the repair.
+
+**Proved** — 13 evidence-in-prompt tasks, 117 runs, three repair policies: cheap-only 37/39 at $0.000197 per success, same-tier retry on an empty reply 39/39 at $0.000180, strong-tier escalation 39/39 and never fired; one cheap call $0.000171 vs one strong call $0.001613
+
+**Verify** — `cd ../agent-harness-lab && cat docs/COST-PER-TASK.md`
+
+**Repo** — https://github.com/lasttoss/agent-harness-lab
 
 ### agent-harness  ·  2026-11-10
 
@@ -238,6 +250,7 @@ Four recurring problems. Each line is a claim; the entries under it are the evid
 
 | id | date | problem | tags |
 |---|---|---|---|
+| `cost-per-successful-task` | 2026-11-11 | A model that is cheap per token can be expensive per task: wrong answers get retried, e... | cost, ai-harness, measurement, orchestration |
 | `agent-harness` | 2026-11-10 | A team uses an AI agent it cannot inspect: no cost attribution, no budget, no proof a w... | platform, ai-harness, cost |
 | `cache-cost-measured` | 2026-11-10 | Teams assume prompt caching saves money, but nobody can say how much, on which model, o... | cost, ai-harness, measurement |
 | `legacy-revive` | 2026-11-09 | A legacy Spring service has no tests, no maps, and nobody knows what breaks when a file... | legacy, testing, toolkit |
@@ -259,11 +272,11 @@ Four recurring problems. Each line is a claim; the entries under it are the evid
 
 ## Tags
 
-- `ai-harness` — agent-harness, cache-cost-measured, cicd-ai-reference, hubgate, job-search, voicekit
+- `ai-harness` — cost-per-successful-task, agent-harness, cache-cost-measured, cicd-ai-reference, hubgate, job-search, voicekit
 - `authorization` — hubgate
 - `backend` — idempotent-economy, go-log-api, zinx-server, ts-nakama-game-demo, quarkus-game-api, quarkus-auth-api, game-center-api
 - `ci` — cicd-ai-reference, qa-kit, tech-radar
-- `cost` — agent-harness, cache-cost-measured, job-search, tech-radar
+- `cost` — cost-per-successful-task, agent-harness, cache-cost-measured, job-search, tech-radar
 - `design` — architecture-diagrams
 - `docs` — architecture-diagrams
 - `evidence` — oom-evidence
@@ -271,8 +284,9 @@ Four recurring problems. Each line is a claim; the entries under it are the evid
 - `jvm` — oom-evidence
 - `legacy` — legacy-revive
 - `local-ai` — voicekit
-- `measurement` — cache-cost-measured, voicekit
+- `measurement` — cost-per-successful-task, cache-cost-measured, voicekit
 - `observability` — oom-evidence, go-log-api
+- `orchestration` — cost-per-successful-task
 - `platform` — agent-harness, hubgate
 - `reliability` — idempotent-economy, zinx-server
 - `security` — quarkus-auth-api

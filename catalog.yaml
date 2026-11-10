@@ -207,6 +207,17 @@ records:
     repo: "https://github.com/lasttoss/game-center-api"
     visibility: public
 
+  - id: cost-per-successful-task
+    date: 2026-11-11
+    problem: "A model that is cheap per token can be expensive per task: wrong answers get retried, empty replies get paid for twice, and nobody prices the repair."
+    proved: "13 evidence-in-prompt tasks, 117 runs, three repair policies: cheap-only 37/39 at $0.000197 per success, same-tier retry on an empty reply 39/39 at $0.000180, strong-tier escalation 39/39 and never fired; one cheap call $0.000171 vs one strong call $0.001613"
+    verify: "cd ../agent-harness-lab && cat docs/COST-PER-TASK.md"
+    tags: [cost, ai-harness, measurement, orchestration]
+    themes: [ai-as-infrastructure, correctness-that-blocks]
+    status: flagship
+    repo: "https://github.com/lasttoss/agent-harness-lab"
+    visibility: public
+
   - id: cache-cost-measured
     date: 2026-11-10
     problem: "Teams assume prompt caching saves money, but nobody can say how much, on which model, or what breaks it."
